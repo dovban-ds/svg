@@ -1,20 +1,25 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React from "react";
+import {
+  GestureHandlerRootView,
+} from "react-native-gesture-handler";
+import { BottomSheetModalProvider } from "@gorhom/bottom-sheet";
+import { StatusBar } from "expo-status-bar";
+import { CreateBottomSheetWrapper } from "@components/BottomSheetWrapper";
+import { BottomSheetProvider } from "@context/BottomSheetContext";
+import { CustomInput } from "@components/CustomInput";
 
-export default function App() {
+const App = () => {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <GestureHandlerRootView style={{ flex: 1, backgroundColor: "#f4dbff" }}>
+      <BottomSheetProvider>
+        <StatusBar />
+        <CustomInput />
+        <BottomSheetModalProvider>
+          <CreateBottomSheetWrapper />
+        </BottomSheetModalProvider>
+      </BottomSheetProvider>
+    </GestureHandlerRootView>
   );
-}
+};
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default App;
